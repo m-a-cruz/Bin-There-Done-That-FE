@@ -36,7 +36,7 @@ export default function LoginPage() {
     <div className="h-screen flex">
       {/* Left Section - Login Form */}
       <div className="w-1/2 flex flex-col items-center bg-white shadow-lg">
-        <div className="w-3/4 flex flex-col justify-center items-center h-96">
+        <div className="w-3/4 flex flex-col justify-center items-center h-100">
           <img src="/BINLOGO.png" alt="Bin Logo" className="h-32 mb-4" />
           <h1 className="text-2xl font-bold text-green-600 text-center mb-6">
             Bin There,
