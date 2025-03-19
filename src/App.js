@@ -12,9 +12,9 @@ import ReportAProblem from "./ReportAProblem";
 
 function App() {
   return (
-    <Router>
       <Routes>
         <Route path="/" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/forgotpassword/verifycode" element={<VerifyCode />} />
@@ -23,10 +23,7 @@ function App() {
         <Route path="/dashboard/accountsettings" element={<AccountSettings />} />
         <Route path="/dashboard/HelpPage" element={<HelpPage />} />
         <Route path="/dashboard/ReportAProblem" element={<ReportAProblem />} />
-
-
       </Routes>
-    </Router>
   );
 }
 
