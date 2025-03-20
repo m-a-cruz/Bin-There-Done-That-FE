@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Mail, Lock } from "lucide-react";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ export default function LoginPage() {
       {/* Left Section - Login Form */}
       <div className="w-1/2 flex flex-col items-center bg-white shadow-lg">
         <div className="w-3/4 flex flex-col justify-center items-center h-100">
-          <img src="/BINLOGO.png" alt="Bin Logo" className="h-32 mb-4" />
+          <img src="/logoyan.png" alt="Bin Logo" className="h-32 mb-4 mt-10" />
           <h1 className="text-2xl font-bold text-green-600 text-center mb-6">
             Bin There,
             <br />
@@ -59,11 +60,13 @@ export default function LoginPage() {
               className="border border-gray-300 rounded-lg p-3 w-full bg-gray-100"
               required
             />
-            <div className="absolute right-3 top-3 text-gray-500">📧</div>
+            <div className="absolute text-gray-700 right-3 top-3 text-gray-500">
+            <Mail size={20} />
+            </div>
           </div>
 
           {/* Password Input */}
-          <div className="w-96 mb-2 relative">
+          <div className="w-96 mb-2 relative ">
             <input
               type="password"
               placeholder="Password"
@@ -72,7 +75,9 @@ export default function LoginPage() {
               className="border border-gray-300 rounded-lg p-3 w-full bg-gray-100"
               required
             />
-            <div className="absolute right-3 top-3 text-gray-500">🔒</div>
+            <div className="absolute text-gray-700 right-3 top-3 text-gray-500">
+            <Lock size={20} />
+            </div>
           </div>
 
           {/* Forgot Password Link */}
@@ -86,7 +91,7 @@ export default function LoginPage() {
           {/* Login Button */}
           <button
             onClick={handleLogin}
-            className="w-96 bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg"
+            className="w-96 font-bold bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg"
           >
             Login
           </button>
@@ -100,7 +105,7 @@ export default function LoginPage() {
 
           {/* Register Button */}
           <button
-            className="w-96 border border-green-600 text-green-600 py-2 rounded-lg hover:bg-green-100"
+            className="w-96 font-bold border border-green-600 text-green-600 py-2 rounded-lg hover:bg-green-100"
             onClick={() => navigate("/register")}
           >
             Register
@@ -110,8 +115,8 @@ export default function LoginPage() {
 
       {/* Right Section - Info / Branding */}
       <div className="w-1/2 flex flex-col justify-center items-center bg-gray-200">
-        <img src="/LOGOBIN.png" alt="Logo" className="w-3/4 mb-4" />
-        <p className="text-green-700 text-lg font-semibold text-center px-6">
+        <img src="/illustration.png" alt="Logo" className="w-full max-w-md mb-5" />
+        <p className="text-green-700 text-lg font-bold text-center px-6">
           Monitor and analyze your trash gas toxicity levels efficiently.
         </p>
       </div>

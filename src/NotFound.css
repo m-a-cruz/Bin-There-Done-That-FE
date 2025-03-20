@@ -9,12 +9,12 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f3f4f6;
 }
 
 h1 {
     font-size: 6rem;
     margin: 0;
+    font-weight: 900;
 }
 
 p {
@@ -30,4 +30,12 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+.not-found-image {
+    width: 250px;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1; 
 }

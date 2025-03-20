@@ -6,7 +6,10 @@ const NotFound = () => {
     return (
         <div className="not-found-container">
             <h1>404</h1>
-            <p>Oops! The page you're looking for doesn't exist.</p>
+            <div className="not-found-image">
+                <img src="\catfound.png" alt='cst inside the trash can' />   
+            </div>
+            <p>We can't find it. It's probably been taken out with the trash.</p>
             <Link to="/">Go Back Home</Link>
         </div>
     );

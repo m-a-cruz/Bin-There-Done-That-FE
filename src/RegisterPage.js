@@ -82,7 +82,7 @@ export default function RegisterPage() {
         {/* Create Account Button */}
         <button
           onClick={handleSubmit}
-          className="w-full mt-6 bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg text-lg"
+          className="w-full font-bold mt-6 bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg text-lg"
         >
           Create my account
         </button>
@@ -90,7 +90,7 @@ export default function RegisterPage() {
         {/* Already Have an Account? */}
         <p className="text-center text-gray-600 mt-4">
           Already have an account?{" "}
-          <span onClick={() => navigate("/")} className="text-green-600 cursor-pointer">
+          <span onClick={() => navigate("/")} className="text-green-600 font-bold cursor-pointer">
             Login
           </span>
         </p>
@@ -127,7 +127,7 @@ export default function RegisterPage() {
       {/* Terms & Conditions Modal */}
       {showTermsModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white rounded-lg p-6 shadow-lg text-center w-96">
+          <div className="bg-white rounded-lg p-6 shadow-lg text-center max-w-2xl">
             <h2 className="text-lg font-semibold text-gray-800">Terms & Conditions</h2>
             <p className="text-gray-600 mt-2 text-left">
               Welcome to our platform! Please read the following terms carefully. By using our
