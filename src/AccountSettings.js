@@ -60,16 +60,16 @@ export default function AccountSettings() {
   return (
     <div className="bg-gray-100 min-h-screen">
       <nav className="bg-white shadow-lg border-b border-gray-300 p-4 flex justify-between items-center">
-        <img src="/BINLOGO.png" alt="Logo" className="h-8 cursor-pointer" onClick={() => navigate("/dashboard")} />
+        <img src="/BINLOGO.png" alt="Logo" className="h-8 cursor-pointer" onClick={() => navigate("/bin-there-done-that/dashboard")} />
       </nav>
 
       <div className="flex">
         {/* sidebar */}
         <div className="w-1/5 bg-white p-6 min-h-screen border-r">
-          <button onClick={() => navigate("/dashboard")} className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100">⬅ Back</button>
-          <button onClick={() => navigate("/dashboard/accountsettings")} className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100 bg-gray-200">⚙ Account Settings</button>
-          <button onClick={() => navigate("/dashboard/HelpPage")} className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100">❓ Help</button>
-          <button onClick={() => navigate("/dashboard/ReportaProblem")} className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100">⚠ Report a Problem</button>
+          <button onClick={() => navigate("/bin-there-done-that/dashboard")} className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100">⬅ Back</button>
+          <button onClick={() => navigate("/bin-there-done-that/dashboard/accountsettings")} className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100 bg-gray-200">⚙ Account Settings</button>
+          <button onClick={() => navigate("/bin-there-done-that/dashboard/HelpPage")} className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100">❓ Help</button>
+          <button onClick={() => navigate("/bin-there-done-that/dashboard/ReportaProblem")} className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100">⚠ Report a Problem</button>
         </div>
 
         {/* account settings */}

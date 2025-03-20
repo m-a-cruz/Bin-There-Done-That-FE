@@ -45,7 +45,7 @@ export default function Dashboard() {
     const fetchCharts = async () => {
       try {
         const response = await axios.get(`${API_URL}/gas/charts`, {
-          headers: { Authorization: `Bearer ${localStorage.getItem(localStorage.getItem("id"))}` },
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });
         setChartData(response.data);
       } catch (error) {
@@ -178,13 +178,13 @@ const DropdownMenu = ({ selectedAvatar, onLogout, onNavigate }) => (
       </span>
     </div>
     <div className="mt-4 space-y-2">
-      <button className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100" onClick={() => onNavigate("/dashboard/accountsettings")}>
+      <button className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100" onClick={() => onNavigate("/bin-there-done-that/dashboard/accountsettings")}>
         ⚙ Account Settings
       </button>
-      <button className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100" onClick={() => onNavigate("/dashboard/HelpPage")}>
+      <button className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100" onClick={() => onNavigate("/bin-there-done-that/dashboard/HelpPage")}>
         ❓ Help
       </button>
-      <button className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100" onClick={() => onNavigate("/dashboard/ReportAProblem")}>
+      <button className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100" onClick={() => onNavigate("/bin-there-done-that/dashboard/ReportAProblem")}>
         ⚠ Report a Problem
       </button>
     </div>

@@ -27,7 +27,7 @@ export default function ReportaProblem() {
           src="/BINLOGO.png" 
           alt="Logo" 
           className="h-8 cursor-pointer" 
-          onClick={() => navigate("/dashboard")} 
+          onClick={() => navigate("/bin-there-done-that/dashboard")} 
         />
       </nav>
 
@@ -35,19 +35,19 @@ export default function ReportaProblem() {
         {/* Sidebar */}
         <div className="w-1/5 bg-white p-6 min-h-screen border-r">
           <button 
-           onClick={() => navigate("/dashboard")}
+           onClick={() => navigate("/bin-there-done-that/dashboard")}
             className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100"
           >
             ⬅ Back
           </button>
           <button 
-            onClick={() => navigate("/dashboard/accountsettings")} 
+            onClick={() => navigate("/bin-there-done-that/dashboard/accountsettings")} 
             className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100"
           >
             ⚙ Account Settings
           </button>
           <button 
-            onClick={() => navigate("/dashboard/HelpPage")} 
+            onClick={() => navigate("/bin-there-done-that/dashboard/HelpPage")} 
             className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100"
           >
             ❓ Help
