@@ -25,7 +25,7 @@ export default function VerifyCode() {
 
           <p className="text-sm text-gray-600">  Didn’t receive a code?{" "}  <span className="text-blue-600 cursor-pointer">Resend</span> </p>
 
-          <button className="w-full bg-green-600 text-white py-3 rounded-md mt-4"onClick={() => navigate("/forgotpassword/verifycode/setnewpassword")}> Verify </button>
+          <button className="w-full bg-green-600 text-white py-3 rounded-md mt-4"onClick={() => navigate("/bin-there-done-that/forgotpassword/setnewpassword")}> Verify </button>
         </div>
       </div>
 

@@ -30,7 +30,7 @@ export default function ForgotPassword() {
             />
           </div>
 
-          <button className="w-full bg-green-600 text-white py-3 rounded-md"onClick={() => navigate("/forgotpassword/verifycode")}>Submit</button>
+          <button className="w-full bg-green-600 text-white py-3 rounded-md"onClick={() => navigate("/bin-there-done-that/forgotpassword/verifycode")}>Submit</button>
         </div>
       </div>
 

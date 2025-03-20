@@ -21,11 +21,9 @@ export default function LoginPage() {
 
     try {
       const response = await axios.post(`${API_URL}/auth/login`,{email: email, password: password});
-      console.log(response.data);
-      localStorage.setItem("id", response.data.id);
+      localStorage.setItem("token", response.data.token);
       localStorage.setItem(response.data.name, response.data.email);
-      localStorage.setItem(response.data.id, response.data.token);
-      navigate("/dashboard");
+      navigate("/bin-there-done-that/dashboard");
     } catch (error) {
       setError(
         error.response.data.error 
