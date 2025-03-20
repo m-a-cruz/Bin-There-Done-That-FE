@@ -41,20 +41,21 @@ export default function Dashboard() {
   useEffect(() => {
     const storedAvatar = localStorage.getItem("selectedAvatar");
     if (storedAvatar) setSelectedAvatar(storedAvatar);
+    
+    const fetchCharts = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/gas/charts`, {
+          headers: { Authorization: `Bearer ${localStorage.getItem(localStorage.getItem("id"))}` },
+        });
+        setChartData(response.data);
+      } catch (error) {
+        console.error("Error fetching charts:", error);
+        alert("Failed to load chart data. Please try again later.");
+      }
+    };
     fetchCharts();
   }, []);
 
-  const fetchCharts = async () => {
-    try {
-      const response = await axios.get(`${API_URL}/gas/charts`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem(localStorage.getItem("id"))}` },
-      });
-      setChartData(response.data);
-    } catch (error) {
-      console.error("Error fetching charts:", error);
-      alert("Failed to load chart data. Please try again later.");
-    }
-  };
 
   const openModal = (url) => {
     setModalContent(url);
