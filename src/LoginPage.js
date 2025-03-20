@@ -20,7 +20,6 @@ export default function LoginPage() {
 
     try {
       const response = await axios.post(`${API_URL}/auth/login`,{email: email, password: password});
-      console.log(response.data);
       localStorage.setItem("token", response.data.token);
       localStorage.setItem(response.data.name, response.data.email);
       navigate("/bin-there-done-that/dashboard");

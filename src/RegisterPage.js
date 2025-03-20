@@ -124,7 +124,7 @@ export default function RegisterPage() {
         {/* Already Have an Account? */}
         <p className="text-center text-gray-600 mt-4">
           Already have an account?{" "}
-          <span onClick={handleSubmit} className="text-green-600 cursor-pointer" >
+          <span onClick={() => navigate("/")} className="text-green-600 cursor-pointer" >
             Login
           </span>
         </p>
