@@ -6,7 +6,7 @@ import axios from "axios";
 // Reusable InfoCard Component
 const InfoCard = memo(({ url, title, onClick  }) => (
   <div
-    className="bg-white p-6 rounded-lg shadow-lg text-center flex flex-col justify-center border border-gray-300 h-[200px] cursor-pointer"
+    className="bg-white p-6 rounded-lg shadow-lg text-center flex flex-col justify-center border border-gray-300 h-[300px] cursor-pointer"
     onClick={onClick}  aria-label={`Info card: ${title}`}
   >
     <iframe src={url} className="w-full h-full rounded-lg pointer-events-none" loading="lazy" title={title}></iframe>
@@ -129,7 +129,7 @@ export default function Dashboard() {
         {/* Right Column */}
         <div className="col-span-2 space-y-6">
           {chartData.filter((chart) =>chart.title === "gasType" || chart.title === "avgPerHour" ).map((chart) => (
-              <ChartCard key={chart._id} url={chart.link} height="h-[400px]" title={chart.title} onClick={() => openModal(chart.link)} />
+              <ChartCard key={chart._id} url={chart.link} height="h-[500px]" title={chart.title} onClick={() => openModal(chart.link)} />
             ))}
         </div>
       </div>
