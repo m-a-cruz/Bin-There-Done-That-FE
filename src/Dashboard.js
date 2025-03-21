@@ -1,12 +1,12 @@
 import React, { useEffect, useState, memo } from "react";
 import { useNavigate } from "react-router-dom";
-import { Bell, X, AlertTriangle, Settings } from "lucide-react";
+import { Bell, X, AlertTriangle, Settings, AlertOctagon } from "lucide-react";
 import axios from "axios";
 
 // Reusable InfoCard Component
 const InfoCard = memo(({ url, title, onClick  }) => (
   <div
-    className="bg-white p-6 rounded-lg shadow-lg text-center flex flex-col justify-center border border-gray-300 h-[300px] cursor-pointer"
+    className="bg-white p-6 rounded-lg shadow-lg text-center flex flex-col justify-center border border-gray-300 h-[250px] cursor-pointer"
     onClick={onClick}  aria-label={`Info card: ${title}`}
   >
     <iframe src={url} className="w-full h-full rounded-lg pointer-events-none" loading="lazy" title={title}></iframe>
@@ -36,25 +36,46 @@ export default function Dashboard() {
   const [selectedAvatar, setSelectedAvatar] = useState("/avatar1.jpg");
   const navigate = useNavigate();
   const API_URL = process.env.REACT_APP_API_URL;
+  const [gasLevel, setGasLevel] = useState(0);
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const [timestamp, setTimestamp] = useState("");
 
-  // Fetch data and initialize state
   useEffect(() => {
     const storedAvatar = localStorage.getItem("selectedAvatar");
     if (storedAvatar) setSelectedAvatar(storedAvatar);
-    
-    const fetchCharts = async () => {
+
+    const fetchData = async () => {
       try {
-        const response = await axios.get(`${API_URL}/gas/charts`, {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        });
-        setChartData(response.data);
+        const [chartsRes, notifRes] = await Promise.all([
+          axios.get(`${API_URL}/gas/charts`, {
+            headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+          }),
+          axios.get(`${API_URL}/gas/notifications`, {
+            headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+          }),
+        ]);
+  
+        setChartData(chartsRes.data);
+        const newGasLevel = notifRes.data; // Check structure
+        console.log(newGasLevel);
+        setGasLevel(newGasLevel);
+        if (gasLevel && gasLevel[0].type !== "Info" || gasLevel[0].data.status !== "Info") {
+          setTimestamp(new Date().toLocaleString());
+          setIsAlertOpen(true);
+        }else{
+          setTimestamp(new Date().toLocaleString());
+          setIsAlertOpen(false);
+        }
       } catch (error) {
-        console.error("Error fetching charts:", error);
-        alert("Failed to load chart data. Please try again later.");
+        console.error("Error fetching data:", error);
       }
     };
-    fetchCharts();
-  }, []);
+  
+    fetchData();
+    const interval = setInterval(fetchData, 60000); // Poll every 10 seconds
+  
+    return () => clearInterval(interval);
+  }, [API_URL]);
 
 
   const openModal = (url) => {
@@ -92,8 +113,26 @@ export default function Dashboard() {
                   Notification
                 </h2>
                 <div className="space-y-3 max-h-80 overflow-auto">
-                  <Notification Icon={Settings} title="System Update" message="We're improving your experience! A system update is scheduled for March 21."/>
-                  <Notification Icon={AlertTriangle} title="Alert Notification" message="High gas concentration detected. Immediate action required!"/>
+                  {/* {gasLevel.message && (
+                    <Notification
+                      Icon={AlertTriangle}
+                      title="Gas Notification"
+                      message={gasLevel.message}
+                    />
+                  )} */}
+                  {gasLevel &&
+                    gasLevel
+                      // Limit to 10 items
+                      .slice(0, 10)
+                      // Map and display notifications
+                      .map((notif) => (
+                        <Notification
+                          key={notif._id.$oid} // Corrected to handle _id properly
+                          Icon={notif.type === "Info" || notif.data.status === "Info" ? Settings : AlertTriangle}
+                          title={notif.type || notif.data.status}
+                          message={`${notif.message || notif.data.message} - ${timestamp}`}
+                        />
+                      ))}
                 </div>
               </div>
             )}
@@ -121,7 +160,7 @@ export default function Dashboard() {
             <InfoCard title="Carbon Dioxide" key={chart._id} url={chart.link} onClick={() => openModal(chart.link)} />
           ))}
           {chartData.filter((chart) => chart.title === "percentage").map((chart) => (
-              <ChartCard key={chart._id} url={chart.link} height="h-[400px]" title="Pie Chart" 
+              <ChartCard key={chart._id} url={chart.link} height="h-[500px]" title="Pie Chart" 
               onClick={() => openModal(chart.link)} />
             ))}
         </div>
@@ -142,6 +181,38 @@ export default function Dashboard() {
         </div>
       </div>
 
+      {/*  Critical Alert Modal */}
+      {isAlertOpen && (
+      <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50 ">
+        <div className="bg-white rounded-lg p-6 w-[900px] h-[300px] shadow-lg border border-gray-300 relative text-center  ring-4 ring-red-300 shadow-red-500/50">
+          <button className="absolute top-3 right-3 text-gray-500 hover:text-gray-700" onClick={() => setIsAlertOpen(false)}>
+            <X size={20} />
+          </button>
+          <div className="flex flex-col items-center">
+            <div className="flex items-center space-x-2 text-red-500 font-bold">
+              <AlertOctagon size={30} />
+              <h2 className="text-2xl font-bold text-pink-600 mt-5">Alert! High Gas Concentration Detected!</h2>
+              <AlertOctagon size={30} />
+            </div>
+            <p className="text-4xl font-extrabold text-red-600 mt-3">{gasLevel.message}</p>
+            <p className="text-gray-700 mt-3 font-medium">
+              Immediate action required! Gas levels have exceeded the safe threshold.
+              <br />
+              Ensure safety measures are in place.
+            </p>
+
+            <p className="text-gray-500 text-sm mt-4">{timestamp}</p>
+
+        {/* Acknowledge Button
+             <button
+             className="mt-4 bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600 transition"
+            onClick={() => setIsAlertOpen(false)}>Acknowledge
+            </button> */}
+          </div>
+        </div>
+      </div>
+      )}
+
       {/* Modal */}
       {modalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50" onClick={() => setModalOpen(false)} aria-label="Close modal">
@@ -159,7 +230,7 @@ export default function Dashboard() {
 
 const Notification = ({ Icon, title, message }) => (
   <div className="flex items-start space-x-3 p-2 border-b">
-    <Icon className="text-gray-500" size={24} />
+    <Icon className={`text-${Icon===Settings ? "gray" : "yellow"}-500`} size={50} />
     <div>
       <h3 className="font-semibold">{title}</h3>
       <p className="text-sm text-gray-600">{message}</p>
