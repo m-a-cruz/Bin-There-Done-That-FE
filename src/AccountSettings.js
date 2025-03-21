@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { ArrowLeft, Settings, HelpCircle, AlertTriangle } from "lucide-react";
 
 export default function AccountSettings() {
   const navigate = useNavigate();
@@ -60,16 +61,39 @@ export default function AccountSettings() {
   return (
     <div className="bg-gray-100 min-h-screen">
       <nav className="bg-white shadow-lg border-b border-gray-300 p-4 flex justify-between items-center">
-        <img src="/BINLOGO.png" alt="Logo" className="h-8 cursor-pointer" onClick={() => navigate("/bin-there-done-that/dashboard")} />
+        <img src="/logoyan.png" alt="Logo" className="h-8 cursor-pointer" onClick={() => navigate("/bin-there-done-that/dashboard")} />
       </nav>
 
       <div className="flex">
         {/* sidebar */}
         <div className="w-1/5 bg-white p-6 min-h-screen border-r">
-          <button onClick={() => navigate("/bin-there-done-that/dashboard")} className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100">⬅ Back</button>
-          <button onClick={() => navigate("/bin-there-done-that/dashboard/accountsettings")} className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100 bg-gray-200">⚙ Account Settings</button>
-          <button onClick={() => navigate("/bin-there-done-that/dashboard/HelpPage")} className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100">❓ Help</button>
-          <button onClick={() => navigate("/bin-there-done-that/dashboard/ReportaProblem")} className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100">⚠ Report a Problem</button>
+        <button 
+            onClick={() => navigate("/bin-there-done-that/dashboard")} 
+            className="w-full font-bold text-left flex items-center px-4 py-2 hover:bg-gray-100"
+        >
+            <ArrowLeft className="w-5 h-5 mr-2" /> Back
+        </button>
+  
+        <button 
+            onClick={() => navigate("/bin-there-done-that/dashboard/accountsettings")} 
+            className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100 bg-gray-200"
+        >
+            <Settings className="w-5 h-5 mr-2" /> Account Settings
+        </button>
+          
+        <button 
+            onClick={() => navigate("/bin-there-done-that/dashboard/HelpPage")} 
+            className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100"
+        >
+            <HelpCircle className="w-5 h-5 mr-2" /> Help
+        </button>
+          
+        <button 
+            onClick={() => navigate("/bin-there-done-that/dashboard/ReportaProblem")} 
+            className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100"
+        >
+          <AlertTriangle className="w-5 h-5 mr-2" /> Report a Problem
+        </button>
         </div>
 
         {/* account settings */}
@@ -166,7 +190,7 @@ export default function AccountSettings() {
             </div>
 
             {/* Save Button */}
-            <button onClick={handleSave} className="bg-blue-500 text-white px-4 py-2 rounded-lg">
+            <button onClick={handleSave} className="bg-blue-500 font-bold text-white px-4 py-2 rounded-lg">
               Save Changes
             </button>
 

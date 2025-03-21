@@ -114,7 +114,7 @@ export default function LoginPage() {
       {/* Right Section - Info / Branding */}
       <div className="w-1/2 flex flex-col justify-center items-center bg-gray-200">
         <img src="/illustration.png" alt="Logo" className="w-full max-w-md mb-5" />
-        <p className="text-green-700 text-lg font-bold text-center px-6">
+        <p className="text-green-700 text-lg font-bold text-center px-8">
           Monitor and analyze your trash gas toxicity levels efficiently.
         </p>
       </div>

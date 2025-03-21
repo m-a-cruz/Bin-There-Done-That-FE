@@ -1,6 +1,6 @@
 import React, { useEffect, useState, memo } from "react";
 import { useNavigate } from "react-router-dom";
-import { Bell, X, AlertTriangle, Settings } from "lucide-react";
+import { Bell, X, AlertTriangle, Settings, HelpCircle } from "lucide-react";
 import axios from "axios";
 
 // Reusable InfoCard Component
@@ -75,17 +75,17 @@ export default function Dashboard() {
   return (
     <div className="bg-gray-100 min-h-screen p-6">
       {/* Navbar */}
-      <nav className="bg-white shadow-lg border-b border-gray-300 p-4 flex justify-between items-center relative">
+      <nav className="bg-white shadow-lg border-b border-gray-300 p-4 flex justify-between items-center w-full fixed top-0 left-0">
         <img
-          src="/BINLOGO.png"
+          src="/logoyan.png"
           alt="Bin Logo"
           className="h-10 w-auto cursor-pointer object-contain"
         />
 
-        <div className="flex items-center space-x-6 relative">
+        <div className="flex items-center space-x-9 relative">
           {/* Notification Icon */}
           <div className="relative">
-            <Bell className="text-black cursor-pointer" size={24} onClick={() => toggleDropdown("notif")} aria-label="Toggle notifications"/>
+            <Bell className="text-black cursor-pointer" size={28} onClick={() => toggleDropdown("notif")} aria-label="Toggle notifications"/>
             {isNotifOpen && (
               <div className="absolute right-0 mt-3 w-96 bg-white shadow-lg rounded-lg p-4 border border-gray-300 z-50">
                 <h2 className="text-center text-lg font-semibold mb-3">
@@ -101,7 +101,7 @@ export default function Dashboard() {
 
           {/* Profile Icon */}
           <div className="relative">
-            <img src={selectedAvatar} alt="Profile" className="h-8 w-8 rounded-full cursor-pointer border" onClick={() => toggleDropdown("profile")} aria-label="Open profile settings"/>
+            <img src={selectedAvatar} alt="Profile" className="h-10 w-10 rounded-full cursor-pointer border" onClick={() => toggleDropdown("profile")} aria-label="Open profile settings"/>
             {isProfileOpen && (
               <DropdownMenu selectedAvatar={selectedAvatar} onLogout={handleLogout} onNavigate={navigate}/>
             )}
@@ -110,7 +110,7 @@ export default function Dashboard() {
       </nav>
 
       {/* Dashboard Content */}
-      <div className="grid grid-cols-3 gap-6 mt-5">
+      <div className="grid grid-cols-3 gap-6 mt-20">
         
         {/* Left Column */}
         <div className="col-span-1 space-y-3">
@@ -179,16 +179,16 @@ const DropdownMenu = ({ selectedAvatar, onLogout, onNavigate }) => (
     </div>
     <div className="mt-4 space-y-2">
       <button className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100" onClick={() => onNavigate("/bin-there-done-that/dashboard/accountsettings")}>
-        ⚙ Account Settings
+        <Settings className="w-5 h-5 mr-2" /> Account Settings
       </button>
       <button className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100" onClick={() => onNavigate("/bin-there-done-that/dashboard/HelpPage")}>
-        ❓ Help
+        <HelpCircle className="w-5 h-5 mr-2" /> Help
       </button>
       <button className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100" onClick={() => onNavigate("/bin-there-done-that/dashboard/ReportAProblem")}>
-        ⚠ Report a Problem
+        <AlertTriangle className="w-5 h-5 mr-2" /> Report a Problem
       </button>
     </div>
-    <button onClick={onLogout} className="w-full bg-red-500 text-white py-2 mt-4 rounded-lg hover:bg-red-600" >
+    <button onClick={onLogout} className="w-full bg-red-500 text-white py-2 mt-4 rounded-lg hover:bg-red-600">
       LOGOUT
     </button>
   </div>

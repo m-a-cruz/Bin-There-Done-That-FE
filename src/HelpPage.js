@@ -1,4 +1,8 @@
 import { useNavigate } from "react-router-dom";
+import { HelpCircle } from "lucide-react";
+import { Settings } from "lucide-react";
+import { AlertTriangle } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 export default function Help() {
   const navigate = useNavigate();
@@ -8,7 +12,7 @@ export default function Help() {
       {/* Top Navbar */}
       <nav className="bg-white shadow-lg border-b border-gray-300 p-4 flex justify-between items-center">
         <img 
-          src="/BINLOGO.png" 
+          src="/logoyan.png" 
           alt="Logo" 
           className="h-8 cursor-pointer" 
           onClick={() => navigate("/bin-there-done-that/dashboard")} 
@@ -18,27 +22,33 @@ export default function Help() {
       <div className="flex">
         {/* Sidebar */}
         <div className="w-1/5 bg-white p-6 min-h-screen border-r">
-          <button 
-            onClick={() => navigate("/bin-there-done-that/dashboard")}
-            className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100"
-          >
-            ⬅ Back
-          </button>
-          <button 
-            onClick={() => navigate("//bin-there-done-thatdashboard/accountsettings")} 
-            className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100 "
-          >
-            ⚙ Account Settings
-          </button>
-        
-          <button   onClick={() => navigate("/bin-there-done-that/dashboard/HelpPage")} className="w-full text-left flex items-center px-4 py-2 bg-gray-200 hover:bg-gray-100">
-            ❓ Help
-          </button>
-        
-          <button 
-            onClick={() => navigate("/bin-there-done-that/dashboard/ReportAProblem")} className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100">
-            ⚠ Report a Problem
-          </button>
+        <button 
+    onClick={() => navigate("/bin-there-done-that/dashboard")} 
+    className="w-full font-bold text-left flex items-center px-4 py-2 hover:bg-gray-100"
+  >
+    <ArrowLeft className="w-5 h-5 mr-2" /> Back
+  </button>
+
+  <button 
+    onClick={() => navigate("/bin-there-done-that/dashboard/accountsettings")} 
+    className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100 bg-gray-200"
+  >
+    <Settings className="w-5 h-5 mr-2" /> Account Settings
+  </button>
+
+  <button 
+    onClick={() => navigate("/bin-there-done-that/dashboard/HelpPage")} 
+    className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100"
+  >
+    <HelpCircle className="w-5 h-5 mr-2" /> Help
+  </button>
+
+  <button 
+    onClick={() => navigate("/bin-there-done-that/dashboard/ReportaProblem")} 
+    className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100"
+  >
+    <AlertTriangle className="w-5 h-5 mr-2" /> Report a Problem
+  </button>
         </div>
 
         {/* Help Content */}
