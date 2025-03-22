@@ -25,7 +25,7 @@ export default function Help() {
             ⬅ Back
           </button>
           <button 
-            onClick={() => navigate("//bin-there-done-thatdashboard/dashboard/accountsettings")} 
+            onClick={() => navigate("//bin-there-done-that/dashboard/accountsettings")} 
             className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100 "
           >
             ⚙ Account Settings
